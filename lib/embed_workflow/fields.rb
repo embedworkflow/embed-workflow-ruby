@@ -4,7 +4,7 @@ require "net/http"
 require "uri"
 
 module EmbedWorkflow
-  module WorkflowFields
+  module Fields
     class << self
       include Base
       include Client

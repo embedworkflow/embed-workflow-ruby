@@ -37,6 +37,7 @@ module EmbedWorkflow
   autoload :Workflows, "embed_workflow/workflows"
   autoload :Actions, "embed_workflow/actions"
   autoload :Forms, "embed_workflow/forms"
+  autoload :Fields, "embed_workflow/fields"
 
   # Errors
   autoload :APIError, "embed_workflow/errors"

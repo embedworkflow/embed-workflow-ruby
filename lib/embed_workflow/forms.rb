@@ -9,6 +9,18 @@ module EmbedWorkflow
       include Base
       include Client
 
+      def create(workflow_hashid:, name:, layout: {})
+        attrs = { name: name, layout: layout }
+
+        request = post_request(
+          auth: true,
+          path: "/api/workflows/#{workflow_hashid}/forms",
+          body: attrs
+        )
+
+        execute_request(request: request)
+      end
+
       def submit(id:, submission:)
         attrs = { submission: submission }
 

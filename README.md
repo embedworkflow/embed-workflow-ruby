@@ -1,10 +1,10 @@
-# Embed Workflow Ruby library
+# Embed Workflow Ruby Library
 
 The Embed Workflow Ruby library provides convenient access to the Embed Workflow API from applications written in the Ruby language.
 
 ## Documentation
 
-See the [Ruby API docs](localhost:4567/?ruby).
+See the [Ruby API docs](https://api-docs.embedworkflow.com/?ruby).
 
 ## Installation
 
@@ -36,7 +36,15 @@ EmbedWorkflow.skey = "sk_live_REPLACE_ME"
 ### Create Workflow
 
 ```ruby
-EmbedWorkflow::Workflows.create(name: "My first workflow")
+template = {
+  "edges": ["a-b", "a-c"],
+  "nodes": [
+    {"id": "a", "name": "Wait 2 hours", "type": "Delay", "delay_n": 2, "delay_unit": "hour"},
+    {"id": "b", "name": "Email", "type": "Email", "recipient": "john@doe.com", "subject": "New Submission", "body": "New submission from {{Name}} - {{Email}} - {{Phone}}."},
+    {"id": "c", "url": "https://domain.com/webhook_example", "name": "Webhook", "type": "Webhook", "params": "one: 1\ntwo: 2", "headers": "X-Custom-Header: my_value"}
+  ]
+}
+EmbedWorkflow::Workflows.create(name: "My first workflow", template: template)
 ```
 
 ### Fetch Workflow
