@@ -4,8 +4,6 @@ require "embed_workflow/version"
 require "json"
 
 module EmbedWorkflow
-  API_HOSTNAME = "embedworkflow.com"
-
   def self.pkey=(value)
     Base.pkey = value
   end

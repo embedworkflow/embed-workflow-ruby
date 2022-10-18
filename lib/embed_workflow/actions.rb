@@ -12,7 +12,7 @@ module EmbedWorkflow
       def activities(hashid:)
         request = get_request(
           auth: true,
-          path: "/api/actions/#{hashid}/activities"
+          path: "#{BASE_API_URL}/#{hashid}/activities"
         )
 
         execute_request(request: request)

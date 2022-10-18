@@ -12,7 +12,7 @@ module EmbedWorkflow
       def list(hashid:)
         request = get_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/fields"
+          path: "#{BASE_API_URL}/#{hashid}/fields"
         )
 
         execute_request(request: request)
@@ -21,7 +21,7 @@ module EmbedWorkflow
       def create(hashid:, fields:)
         request = post_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/fields/",
+          path: "#{BASE_API_URL}/#{hashid}/fields/",
           body: { workflow: { fields: fields } }
         )
 
@@ -39,7 +39,7 @@ module EmbedWorkflow
 
         request = put_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/fields/",
+          path: "#{BASE_API_URL}/#{hashid}/fields/",
           body: { field: attrs }
         )
 
@@ -51,7 +51,7 @@ module EmbedWorkflow
 
         request = delete_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/fields",
+          path: "#{BASE_API_URL}/#{hashid}/fields",
           params: attrs
         )
 

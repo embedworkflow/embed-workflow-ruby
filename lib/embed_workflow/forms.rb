@@ -14,7 +14,7 @@ module EmbedWorkflow
 
         request = post_request(
           auth: true,
-          path: "/api/workflows/#{workflow_hashid}/forms",
+          path: "#{BASE_API_URL}/#{workflow_hashid}/forms",
           body: attrs
         )
 
@@ -26,7 +26,7 @@ module EmbedWorkflow
 
         request = post_request(
           auth: true,
-          path: "/api/forms/#{id}/submissions",
+          path: "#{BASE_API_URL}/#{id}/submissions",
           body: attrs
         )
 
@@ -36,7 +36,7 @@ module EmbedWorkflow
       def fetch(id:, without_auth: false)
         request = get_request(
           auth: without_auth ? false : true,
-          path: "/api/forms/#{id}"
+          path: "#{BASE_API_URL}/#{id}"
         )
 
         execute_request(request: request)
@@ -49,7 +49,7 @@ module EmbedWorkflow
 
         request = put_request(
           auth: true,
-          path: "/api/forms/#{id}",
+          path: "#{BASE_API_URL}/#{id}",
           body: attrs
         )
 
@@ -59,7 +59,7 @@ module EmbedWorkflow
       def delete(id:)
         request = delete_request(
           auth: true,
-          path: "/api/forms/#{id}"
+          path: "#{BASE_API_URL}/#{id}"
         )
 
         execute_request(request: request)

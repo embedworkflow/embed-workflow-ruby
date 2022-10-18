@@ -18,7 +18,7 @@ module EmbedWorkflow
 
         request = post_request(
           auth: true,
-          path: "/api/workflows",
+          path: "#{BASE_API_URL}/workflows",
           body: attrs
         )
 
@@ -28,7 +28,7 @@ module EmbedWorkflow
       def list
         request = get_request(
           auth: true,
-          path: "/api/workflows"
+          path: "#{BASE_API_URL}/workflows"
         )
 
         execute_request(request: request)
@@ -37,7 +37,7 @@ module EmbedWorkflow
       def fetch(hashid:)
         request = get_request(
           auth: true,
-          path: "/api/workflows/#{hashid}"
+          path: "#{BASE_API_URL}/workflows/#{hashid}"
         )
 
         execute_request(request: request)
@@ -50,7 +50,7 @@ module EmbedWorkflow
 
         request = put_request(
           auth: true,
-          path: "/api/workflows/#{hashid}",
+          path: "#{BASE_API_URL}/workflows/#{hashid}",
           body: attrs
         )
 
@@ -65,7 +65,7 @@ module EmbedWorkflow
 
         request = post_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/execute",
+          path: "#{BASE_API_URL}/workflows/#{hashid}/execute",
           body: attrs
         )
 
@@ -75,7 +75,7 @@ module EmbedWorkflow
       def clone(hashid:)
         request = post_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/clone"
+          path: "#{BASE_API_URL}/workflows/#{hashid}/clone"
         )
 
         execute_request(request: request)
@@ -84,7 +84,7 @@ module EmbedWorkflow
       def run(hashid:)
         request = post_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/run"
+          path: "#{BASE_API_URL}/workflows/#{hashid}/run"
         )
 
         execute_request(request: request)
@@ -93,7 +93,16 @@ module EmbedWorkflow
       def activities(hashid:)
         request = get_request(
           auth: true,
-          path: "/api/workflows/#{hashid}/activities"
+          path: "#{BASE_API_URL}/workflows/#{hashid}/activities"
+        )
+
+        execute_request(request: request)
+      end
+
+      def delete(hashid:)
+        request = delete_request(
+          auth: true,
+          path: "#{BASE_API_URL}/workflows/#{hashid}"
         )
 
         execute_request(request: request)

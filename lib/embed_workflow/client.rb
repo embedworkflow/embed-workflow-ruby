@@ -4,10 +4,11 @@ module EmbedWorkflow
   # A Net::HTTP based API client for interacting with the EmbedWorkflow API
   module Client
     include Kernel
+    BASE_API_URL = "/api/v1".freeze
 
     def client
       return @client if defined?(@client)
-      @client         = create_connection(URI.parse("http://localhost:5000/api"))
+      @client         = create_connection(URI.parse("http://localhost:5000/"))
       # @client.use_ssl = true
 
       @client
