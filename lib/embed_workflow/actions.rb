@@ -10,12 +10,10 @@ module EmbedWorkflow
       include Client
 
       def activities(hashid:)
-        request = get_request(
+        get_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{hashid}/activities"
+          path: "#{BASE_API_PATH}/#{hashid}/activities"
         )
-
-        execute_request(request: request)
       end
     end
   end

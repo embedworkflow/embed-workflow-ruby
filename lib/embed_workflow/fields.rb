@@ -10,22 +10,18 @@ module EmbedWorkflow
       include Client
 
       def list(hashid:)
-        request = get_request(
+        get_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{hashid}/fields"
+          path: "#{BASE_API_PATH}/#{hashid}/fields"
         )
-
-        execute_request(request: request)
       end
 
       def create(hashid:, fields:)
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{hashid}/fields/",
+          path: "#{BASE_API_PATH}/#{hashid}/fields/",
           body: { workflow: { fields: fields } }
         )
-
-        execute_request(request: request)
       end
 
       def update(hashid:, id:, name:, type:, required: false, data: {})
@@ -37,25 +33,21 @@ module EmbedWorkflow
           data: data
         }
 
-        request = put_request(
+        put_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{hashid}/fields/",
+          path: "#{BASE_API_PATH}/#{hashid}/fields/",
           body: { field: attrs }
         )
-
-        execute_request(request: request)
       end
 
       def delete(hashid:, field_key: nil)
         attrs = { field_key: field_key }
 
-        request = delete_request(
+        delete_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{hashid}/fields",
+          path: "#{BASE_API_PATH}/#{hashid}/fields",
           params: attrs
         )
-
-        execute_request(request: request)
       end
     end
   end

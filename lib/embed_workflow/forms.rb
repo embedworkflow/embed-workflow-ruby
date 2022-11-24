@@ -12,34 +12,28 @@ module EmbedWorkflow
       def create(workflow_hashid:, name:, layout: {})
         attrs = { name: name, layout: layout }
 
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{workflow_hashid}/forms",
+          path: "#{BASE_API_PATH}/#{workflow_hashid}/forms",
           body: attrs
         )
-
-        execute_request(request: request)
       end
 
       def submit(id:, submission:)
         attrs = { submission: submission }
 
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{id}/submissions",
+          path: "#{BASE_API_PATH}/#{id}/submissions",
           body: attrs
         )
-
-        execute_request(request: request)
       end
 
       def fetch(id:, without_auth: false)
-        request = get_request(
+        get_request(
           auth: without_auth ? false : true,
-          path: "#{BASE_API_URL}/#{id}"
+          path: "#{BASE_API_PATH}/#{id}"
         )
-
-        execute_request(request: request)
       end
 
       def update(id:, name:)
@@ -47,22 +41,18 @@ module EmbedWorkflow
           name: name
         }
 
-        request = put_request(
+        put_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{id}",
+          path: "#{BASE_API_PATH}/#{id}",
           body: attrs
         )
-
-        execute_request(request: request)
       end
 
       def delete(id:)
-        request = delete_request(
+        delete_request(
           auth: true,
-          path: "#{BASE_API_URL}/#{id}"
+          path: "#{BASE_API_PATH}/#{id}"
         )
-
-        execute_request(request: request)
       end
     end
   end

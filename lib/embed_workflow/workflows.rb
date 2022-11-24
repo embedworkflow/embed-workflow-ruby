@@ -16,31 +16,25 @@ module EmbedWorkflow
           auto_start: auto_start
         }
 
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows",
+          path: "#{BASE_API_PATH}/workflows",
           body: attrs
         )
-
-        execute_request(request: request)
       end
 
       def list
-        request = get_request(
+        get_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows"
+          path: "#{BASE_API_PATH}/workflows"
         )
-
-        execute_request(request: request)
       end
 
       def fetch(hashid:)
-        request = get_request(
+        get_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}"
+          path: "#{BASE_API_PATH}/workflows/#{hashid}"
         )
-
-        execute_request(request: request)
       end
 
       def update(hashid:, name:)
@@ -48,13 +42,11 @@ module EmbedWorkflow
           name: name
         }
 
-        request = put_request(
+        put_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}",
+          path: "#{BASE_API_PATH}/workflows/#{hashid}",
           body: attrs
         )
-
-        execute_request(request: request)
       end
 
       def execute(hashid:, form: {}, execution: {})
@@ -63,49 +55,39 @@ module EmbedWorkflow
           execution: execution,
         }
 
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}/execute",
+          path: "#{BASE_API_PATH}/workflows/#{hashid}/execute",
           body: attrs
         )
-
-        execute_request(request: request)
       end
 
       def clone(hashid:)
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}/clone"
+          path: "#{BASE_API_PATH}/workflows/#{hashid}/clone"
         )
-
-        execute_request(request: request)
       end
 
       def run(hashid:)
-        request = post_request(
+        post_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}/run"
+          path: "#{BASE_API_PATH}/workflows/#{hashid}/run"
         )
-
-        execute_request(request: request)
       end
 
       def activities(hashid:)
-        request = get_request(
+        get_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}/activities"
+          path: "#{BASE_API_PATH}/workflows/#{hashid}/activities"
         )
-
-        execute_request(request: request)
       end
 
       def delete(hashid:)
-        request = delete_request(
+        delete_request(
           auth: true,
-          path: "#{BASE_API_URL}/workflows/#{hashid}"
+          path: "#{BASE_API_PATH}/workflows/#{hashid}"
         )
-
-        execute_request(request: request)
       end
     end
   end
