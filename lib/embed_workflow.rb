@@ -4,18 +4,6 @@ require "embed_workflow/version"
 require "json"
 
 module EmbedWorkflow
-  def self.pkey=(value)
-    Base.pkey = value
-  end
-
-  def self.pkey
-    Base.pkey
-  end
-
-  def self.pkey!
-    pkey || raise("EmbedWorkflow.pkey not set")
-  end
-
   def self.skey=(value)
     Base.skey = value
   end
@@ -35,11 +23,11 @@ module EmbedWorkflow
   autoload :Actions, "embed_workflow/actions"
   autoload :Forms, "embed_workflow/forms"
   autoload :Fields, "embed_workflow/fields"
+  autoload :Tenants, "embed_workflow/tenants"
+  autoload :Integrations, "embed_workflow/integrations"
+  autoload :Users, "embed_workflow/users"
 
   autoload :APIError, "embed_workflow/errors"
   autoload :AuthenticationError, "embed_workflow/errors"
   autoload :InvalidRequestError, "embed_workflow/errors"
-
-  pkey               = ENV["EMBED_WORKFLOW_API_KEY"]
-  EmbedWorkflow.pkey = pkey unless pkey.nil?
 end

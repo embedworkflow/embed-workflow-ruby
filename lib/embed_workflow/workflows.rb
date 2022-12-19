@@ -9,16 +9,40 @@ module EmbedWorkflow
       include Base
       include Client
 
-      def create(name:, template: nil, auto_start: true)
+      def create(name:, template: nil, context: nil, auto_start: nil, tenant_key: nil)
         attrs = {
           name: name,
           template: template,
-          auto_start: auto_start
+          auto_start: auto_start,
+          tenant_key: tenant_key,
+          context: context
         }
 
         post_request(
           auth: true,
           path: "#{BASE_API_PATH}/workflows",
+          body: attrs
+        )
+      end
+
+      def fetch(hashid:)
+        get_request(
+          auth: true,
+          path: "#{BASE_API_PATH}/workflows/#{hashid}"
+        )
+      end
+
+      def update(hashid:, name: nil, template: nil, tenant_key: nil, context: nil, auto_start: nil)
+        attrs = {
+          name: name,
+          template: template,
+          tenant_key: tenant_key,
+          context: context
+        }.compact
+
+        put_request(
+          auth: true,
+          path: "#{BASE_API_PATH}/workflows/#{hashid}",
           body: attrs
         )
       end
@@ -30,29 +54,10 @@ module EmbedWorkflow
         )
       end
 
-      def fetch(hashid:)
-        get_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/workflows/#{hashid}"
-        )
-      end
-
-      def update(hashid:, name:)
+      def execute(hashid:, form_data: {}, execution_data: {})
         attrs = {
-          name: name
-        }
-
-        put_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/workflows/#{hashid}",
-          body: attrs
-        )
-      end
-
-      def execute(hashid:, form: {}, execution: {})
-        attrs = {
-          form: form,
-          execution: execution,
+          form_data: form_data,
+          execution_data: execution_data,
         }
 
         post_request(

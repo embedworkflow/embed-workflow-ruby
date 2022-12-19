@@ -4,12 +4,13 @@ module EmbedWorkflow
   module Client
     include Kernel
     BASE_API_PATH = "/api/v1".freeze
-    BASE_API_URL  = "https://embedworkflow.com/".freeze
+    # BASE_API_URL  = "https://embedworkflow.com/".freeze
+    BASE_API_URL  = "http://localhost:5000/".freeze
 
     def client
       return @client if defined?(@client)
       @client         = create_connection(URI.parse(BASE_API_URL))
-      @client.use_ssl = true
+      # @client.use_ssl = true
 
       @client
     end
@@ -30,7 +31,7 @@ module EmbedWorkflow
     end
 
     def put_request(path:, auth: false, body: nil)
-      request = build_delete_request(path: path, auth: auth, body: body)
+      request = build_put_request(path: path, auth: auth, body: body)
       execute_request(request)
     end
 
@@ -47,22 +48,22 @@ module EmbedWorkflow
         case response.code.to_i
         when 400
           raise InvalidRequestError.new(
-            http_status: http_status,
+            http_status: 400,
             request_id: response["x-request-id"]
           )
         when 401
           raise AuthenticationError.new(
-            http_status: http_status,
+            http_status: 401,
             request_id: response["x-request-id"]
           )
         when 404
           raise APIError.new(
-            http_status: http_status,
+            http_status: 404,
             request_id: response["x-request-id"]
           )
         when 422
           raise InvalidRequestError.new(
-            http_status: http_status,
+            http_status: 422,
             request_id: response["x-request-id"]
           )
         end
@@ -81,7 +82,7 @@ module EmbedWorkflow
           "Content-Type" => "application/json"
         )
 
-        add_request_headers(request) if auth
+        add_request_auth_headers(request) if auth
         add_request_headers(request)
         request
       end
@@ -89,7 +90,8 @@ module EmbedWorkflow
       def build_post_request(path:, auth: false, body: nil)
         request      = Net::HTTP::Post.new(path, "Content-Type" => "application/json")
         request.body = body.to_json if body
-        add_request_headers(request) if auth
+
+        add_request_auth_headers(request) if auth
         add_request_headers(request)
         request
       end
@@ -103,7 +105,7 @@ module EmbedWorkflow
           "Content-Type" => "application/json"
         )
 
-        add_request_headers(request) if auth
+        add_request_auth_headers(request) if auth
         add_request_headers(request)
         request
       end
@@ -111,14 +113,13 @@ module EmbedWorkflow
       def build_put_request(path:, auth: false, body: nil)
         request      = Net::HTTP::Put.new(path, "Content-Type" => "application/json")
         request.body = body.to_json if body
-        add_request_headers(request) if auth
+        add_request_auth_headers(request) if auth
         add_request_headers(request)
         request
       end
 
       def add_request_auth_headers(request)
-        request["Authorization"]       = "Bearer #{EmbedWorkflow.pkey!}"
-        request["X-Embed-Workflow-SK"] = EmbedWorkflow.skey!
+        request["Authorization"] = "Bearer #{EmbedWorkflow.skey!}"
         request
       end
 

@@ -2,10 +2,10 @@
 
 module EmbedWorkflow
   module Base
-    attr_accessor :pkey, :skey
+    attr_accessor :skey
 
     class << self
-      attr_accessor :pkey, :skey
+      attr_accessor :skey
     end
   end
 end
