@@ -18,16 +18,17 @@ module EmbedWorkflow
 
   autoload :Base, "embed_workflow/base"
   autoload :Client, "embed_workflow/client"
-
-  autoload :Workflows, "embed_workflow/workflows"
-  autoload :Actions, "embed_workflow/actions"
-  autoload :Forms, "embed_workflow/forms"
-  autoload :Fields, "embed_workflow/fields"
-  autoload :Tenants, "embed_workflow/tenants"
-  autoload :Integrations, "embed_workflow/integrations"
-  autoload :Users, "embed_workflow/users"
-
   autoload :APIError, "embed_workflow/errors"
   autoload :AuthenticationError, "embed_workflow/errors"
   autoload :InvalidRequestError, "embed_workflow/errors"
+
+  autoload :Actions, "embed_workflow/actions"
+  autoload :Executions, "embed_workflow/executions"
+  autoload :Trigger, "embed_workflow/trigger"
+  autoload :Users, "embed_workflow/users"
+  autoload :Workflows, "embed_workflow/workflows"
+
+  def self.trigger(**args)
+    Trigger.create(**args)
+  end
 end

@@ -25,7 +25,7 @@ module EmbedWorkflow
         )
       end
 
-      def fetch(hashid:)
+      def fetch(hashid: nil, key: nil)
         get_request(
           auth: true,
           path: "#{BASE_API_PATH}/workflows/#{hashid}"
@@ -47,10 +47,11 @@ module EmbedWorkflow
         )
       end
 
-      def list
+      def list(user_key: nil, starting_after: nil, ending_before: nil)
         get_request(
           auth: true,
-          path: "#{BASE_API_PATH}/workflows"
+          path: "#{BASE_API_PATH}/workflows",
+          params: { user_key: user_key, starting_after: starting_after, ending_before: ending_before }.compact
         )
       end
 

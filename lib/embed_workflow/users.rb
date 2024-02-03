@@ -9,11 +9,12 @@ module EmbedWorkflow
       include Base
       include Client
 
-      def upsert(key:, name: nil, email: nil)
+      def upsert(key:, name: nil, email: nil, config: nil)
         attrs = {
           key: key,
           name: name,
-          email: email
+          email: email,
+          config: config
         }.compact
 
         put_request(
