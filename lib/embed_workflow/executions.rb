@@ -4,10 +4,12 @@ require "net/http"
 require "uri"
 
 module EmbedWorkflow
-  module Workflows
+  module Executions
     class << self
       include Base
       include Client
+
+      RESOURCE_BASE_PATH = "#{BASE_API_PATH}/executions".freeze
 
       def stop(stop_event:, user_key: nil, filters: nil)
         attrs = {
@@ -17,8 +19,7 @@ module EmbedWorkflow
         }
 
         post_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/executions",
+          path: "#{RESOURCE_BASE_PATH}/stop",
           body: attrs
         )
       end

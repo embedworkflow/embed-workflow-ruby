@@ -15,22 +15,22 @@ module EmbedWorkflow
       @client
     end
 
-    def get_request(path:, auth: false, params: {})
+    def get_request(path:, auth: true, params: {})
       request = build_get_request(path: path, auth: auth, params: params)
       execute_request(request)
     end
 
-    def post_request(path:, auth: false, body: nil)
+    def post_request(path:, auth: true, body: nil)
       request = build_post_request(path: path, auth: auth, body: body)
       execute_request(request)
     end
 
-    def delete_request(path:, auth: false, params: {})
+    def delete_request(path:, auth: true, params: {})
       request = build_delete_request(path: path, auth: auth, params: params)
       execute_request(request)
     end
 
-    def put_request(path:, auth: false, body: nil)
+    def put_request(path:, auth: true, body: nil)
       request = build_put_request(path: path, auth: auth, body: body)
       execute_request(request)
     end

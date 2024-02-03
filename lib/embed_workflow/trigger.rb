@@ -9,6 +9,8 @@ module EmbedWorkflow
       include Base
       include Client
 
+      RESOURCE_BASE_PATH = "#{BASE_API_PATH}/trigger".freeze
+
       def create(event:, all_workflows: false, workflow_hashids: nil, workflow_keys: nil, user_key: nil, execution_data: nil)
         attrs = {
           event: event,
@@ -20,8 +22,7 @@ module EmbedWorkflow
         }.compact
 
         post_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/trigger",
+          path: RESOURCE_BASE_PATH,
           body: attrs
         )
       end

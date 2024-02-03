@@ -9,11 +9,10 @@ module EmbedWorkflow
       include Base
       include Client
 
+      RESOURCE_BASE_PATH = "#{BASE_API_PATH}/actions".freeze
+
       def activities(hashid:)
-        get_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/#{hashid}/activities"
-        )
+        get_request(path: "#{RESOURCE_BASE_PATH}/activities")
       end
     end
   end

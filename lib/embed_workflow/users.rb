@@ -9,6 +9,8 @@ module EmbedWorkflow
       include Base
       include Client
 
+      RESOURCE_BASE_PATH = "#{BASE_API_PATH}/users".freeze
+
       def upsert(key:, name: nil, email: nil, config: nil)
         attrs = {
           key: key,
@@ -18,17 +20,13 @@ module EmbedWorkflow
         }.compact
 
         put_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/users/#{key}",
+          path: "#{RESOURCE_BASE_PATH}/#{key}",
           body: attrs
         )
       end
 
       def fetch(key:)
-        get_request(
-          auth: true,
-          path: "#{BASE_API_PATH}/users/#{key}"
-        )
+        get_request(path: "#{RESOURCE_BASE_PATH}/#{key}")
       end
     end
   end
