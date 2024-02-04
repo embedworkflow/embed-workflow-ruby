@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name        = "embed_workflow"
   spec.version     = EmbedWorkflow::VERSION
   spec.authors     = ["Embed Workflow"]
-  spec.email       = ["support@embedworkflow.com"]
+  spec.email       = ["devsupport@embedworkflow.com"]
   spec.description = "API client for Embed Workflow"
   spec.summary     = "API client for Embed Workflow"
   spec.homepage    = "https://github.com/embedworkflow/embed-workflow-ruby"
