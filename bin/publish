@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+bundle install
+bundle exec gem build embed_workflow --output=release.gem
+bundle exec gem push release.gem
