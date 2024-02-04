@@ -4,13 +4,12 @@ module EmbedWorkflow
   module Client
     include Kernel
     BASE_API_PATH = "/api/v1".freeze
-    # BASE_API_URL  = "https://embedworkflow.com/".freeze
-    BASE_API_URL  = "http://localhost:5000/".freeze
+    BASE_API_URL  = "https://embedworkflow.com/".freeze
 
     def client
       return @client if defined?(@client)
       @client         = create_connection(URI.parse(BASE_API_URL))
-      # @client.use_ssl = true
+      @client.use_ssl = true
 
       @client
     end
