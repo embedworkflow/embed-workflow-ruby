@@ -53,27 +53,27 @@ module EmbedWorkflow
         )
       end
 
-      def execute(hashid:, form_data: {}, execution_data: {})
+      def execute(hashid: nil, key: nil, user_key: nil, execution_data: {})
+        raise ArgumentError, "Hashid or Key is required" if hashid.nil? && key.nil?
+
         attrs = {
-          form_data: form_data,
+          user_key: user_key,
+          id_type: hashid.nil? ? "key" : "hashid",
           execution_data: execution_data,
-        }
+        }.compact
 
         post_request(
-          path: "#{RESOURCE_BASE_PATH}/#{hashid}/execute",
+          path: "#{RESOURCE_BASE_PATH}/#{hashid || key}/execute",
           body: attrs
         )
       end
 
-      def clone(hashid:)
-        post_request(
-          path: "#{RESOURCE_BASE_PATH}/#{hashid}/clone"
-        )
-      end
+      def clone(hashid:, user_key: nil)
+        attrs = { user_key: user_key }.compact
 
-      def run(hashid:)
         post_request(
-          path: "#{RESOURCE_BASE_PATH}/#{hashid}/run"
+          path: "#{RESOURCE_BASE_PATH}/#{hashid}/clone",
+          body: attrs
         )
       end
 
@@ -83,9 +83,17 @@ module EmbedWorkflow
         )
       end
 
-      def delete(hashid:)
+      def delete(hashid: nil, key: nil, user_key: nil)
+        raise ArgumentError, "Hashid or Key is required" if hashid.nil? && key.nil?
+
+        attrs = {
+          user_key: user_key,
+          id_type: hashid.nil? ? "key" : "hashid"
+        }.compact
+
         delete_request(
-          path: "#{RESOURCE_BASE_PATH}/#{hashid}"
+          path: "#{RESOURCE_BASE_PATH}/#{hashid || key}",
+          params: attrs
         )
       end
     end
