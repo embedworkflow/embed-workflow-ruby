@@ -111,8 +111,6 @@ EmbedWorkflow::Actions.activities(hashid: "7l0al")
 
 ```ruby
 config = {
-  primary_color: "#333333",
-  logo_url: "https://embedworkflow.com/assets/logo-dark-ac3f24918e46816034763925e7e2272381c18907601677ffa9e842f46555e80d.png",
   user_data: {
     foo: "bar"
   },

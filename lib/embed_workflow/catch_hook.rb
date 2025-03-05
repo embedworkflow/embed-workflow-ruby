@@ -13,7 +13,7 @@ module EmbedWorkflow
 
       def create(hook_id:, user_key:, **rest)
         attrs = { user_key: user_key }.merge(rest).compact
-        puts "#{RESOURCE_BASE_PATH}/#{hook_id}/catch"
+
         post_request(
           path: "#{RESOURCE_BASE_PATH}/#{hook_id}/catch",
           body: attrs
