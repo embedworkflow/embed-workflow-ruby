@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug environment
+        run: |
+          echo "RubyGems key present: ${{ secrets.RUBYGEMS_API_KEY != '' }}"
+          ls -la ./
       - uses: actions/checkout@v1
       - name: Release Gem
         uses: cadwallion/publish-rubygems-action@master
