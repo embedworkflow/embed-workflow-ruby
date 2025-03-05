@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = "https://github.com/embedworkflow/embed-workflow-ruby"
   spec.license     = "MIT"
   spec.metadata    = {
-    "documentation_uri" => "https://api-docs.embedworkflow.com"
+    "documentation_uri" => "https://docs.embedworkflow.com"
   }
 
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
