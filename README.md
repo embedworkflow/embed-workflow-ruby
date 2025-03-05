@@ -130,3 +130,9 @@ EmbedWorkflow::Users.upsert(name: "Jane Smith", id: user["id"], config: config)
 ```ruby
 EmbedWorkflow::Users.fetch(key: "api-user-1")
 ```
+
+### Catch a webhook
+
+```ruby
+EmbedWorkflow.catch_hook(user_key: "main", hook_id: "70e59f4d-1dc4-4720-b0bb-46929dc48d47", anything: "else", you: "need")
+```
