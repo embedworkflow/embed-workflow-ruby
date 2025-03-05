@@ -22,6 +22,7 @@ module EmbedWorkflow
   autoload :Actions, "embed_workflow/actions"
   autoload :Executions, "embed_workflow/executions"
   autoload :Trigger, "embed_workflow/trigger"
+  autoload :CatchHook, "embed_workflow/catch_hook"
   autoload :Users, "embed_workflow/users"
   autoload :Workflows, "embed_workflow/workflows"
 
@@ -31,5 +32,9 @@ module EmbedWorkflow
 
   def self.trigger(**args)
     Trigger.create(**args)
+  end
+
+  def self.catch_hook(**args)
+    CatchHook.create(**args)
   end
 end

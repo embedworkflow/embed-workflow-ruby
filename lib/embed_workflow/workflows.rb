@@ -11,13 +11,13 @@ module EmbedWorkflow
 
       RESOURCE_BASE_PATH = "#{BASE_API_PATH}/workflows"
 
-      def create(name:, template: nil, context: nil, auto_start: nil, tenant_key: nil)
+      def create(name:, template: nil, user_key: nil, event_trigger: nil, trigger_conditions: nil)
         attrs = {
           name: name,
           template: template,
-          auto_start: auto_start,
-          tenant_key: tenant_key,
-          context: context
+          event_trigger: event_trigger,
+          trigger_conditions: trigger_conditions,
+          user_key: user_key
         }
 
         post_request(
@@ -32,12 +32,11 @@ module EmbedWorkflow
         )
       end
 
-      def update(hashid:, name: nil, template: nil, tenant_key: nil, context: nil, auto_start: nil)
+      def update(hashid:, name: nil, template: nil, user_key: nil)
         attrs = {
           name: name,
           template: template,
-          tenant_key: tenant_key,
-          context: context
+          user_key: user_key
         }.compact
 
         put_request(

@@ -111,8 +111,6 @@ EmbedWorkflow::Actions.activities(hashid: "7l0al")
 
 ```ruby
 config = {
-  primary_color: "#333333",
-  logo_url: "https://embedworkflow.com/assets/logo-dark-ac3f24918e46816034763925e7e2272381c18907601677ffa9e842f46555e80d.png",
   user_data: {
     foo: "bar"
   },
@@ -129,4 +127,10 @@ EmbedWorkflow::Users.upsert(name: "Jane Smith", id: user["id"], config: config)
 
 ```ruby
 EmbedWorkflow::Users.fetch(key: "api-user-1")
+```
+
+### Catch a webhook
+
+```ruby
+EmbedWorkflow.catch_hook(user_key: "main", hook_id: "70e59f4d-1dc4-4720-b0bb-46929dc48d47", anything: "else", you: "need")
 ```
