@@ -28,6 +28,23 @@ module EmbedWorkflow
       def fetch(key:)
         get_request(path: "#{RESOURCE_BASE_PATH}/#{key}")
       end
+
+      def list(starting_after: nil, ending_before: nil, limit: nil)
+        params = {
+          starting_after: starting_after,
+          ending_before: ending_before,
+          limit: limit
+        }.compact
+
+        get_request(
+          path: RESOURCE_BASE_PATH,
+          params: params
+        )
+      end
+
+      def delete(key:)
+        delete_request(path: "#{RESOURCE_BASE_PATH}/#{key}")
+      end
     end
   end
 end
