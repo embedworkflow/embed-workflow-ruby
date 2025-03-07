@@ -30,6 +30,16 @@ require "embed_workflow"
 EmbedWorkflow.skey = "sk_live_REPLACE_ME"
 ```
 
+## Pagination
+
+The EmbedWorkflow API uses cursor-based pagination for list endpoints. The following pagination parameters are supported:
+
+- `starting_after`: Returns objects after this cursor position (exclusive)
+- `ending_before`: Returns objects before this cursor position (exclusive)
+- `limit`: Maximum number of objects to return (defaults to 25 if not specified)
+
+Both cursor parameters take an object ID as their value. The response will include the data array containing the requested objects, along with pagination metadata.
+
 ## Usage
 
 ### Create Workflow
@@ -58,7 +68,14 @@ EmbedWorkflow::Workflows.fetch(hashid: "nybra")
 ### List Workflows
 
 ```ruby
+# Default pagination (25 items)
 EmbedWorkflow::Workflows.list
+
+# With pagination parameters
+EmbedWorkflow::Workflows.list(starting_after: "550e8400-e29b-41d4-a716-446655440000", limit: 10)
+
+# Filter by user
+EmbedWorkflow::Workflows.list(user_key: "api-user-1")
 ```
 
 ### Update Workflow
@@ -132,10 +149,10 @@ EmbedWorkflow::Users.fetch(key: "api-user-1")
 ### List users
 
 ```ruby
-# List all users
+# Default pagination (25 items)
 EmbedWorkflow::Users.list
 
-# List with pagination
+# With pagination parameters
 EmbedWorkflow::Users.list(starting_after: "550e8400-e29b-41d4-a716-446655440000", limit: 10)
 ```
 
