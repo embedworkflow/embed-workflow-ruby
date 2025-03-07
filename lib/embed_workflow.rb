@@ -20,6 +20,7 @@ module EmbedWorkflow
   autoload :Client, "embed_workflow/client"
 
   autoload :Actions, "embed_workflow/actions"
+  autoload :AppConnections, "embed_workflow/app_connections"
   autoload :Executions, "embed_workflow/executions"
   autoload :Trigger, "embed_workflow/trigger"
   autoload :CatchHook, "embed_workflow/catch_hook"
