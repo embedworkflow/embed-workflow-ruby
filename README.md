@@ -129,6 +129,22 @@ EmbedWorkflow::Users.upsert(name: "Jane Smith", id: user["id"], config: config)
 EmbedWorkflow::Users.fetch(key: "api-user-1")
 ```
 
+### List users
+
+```ruby
+# List all users
+EmbedWorkflow::Users.list
+
+# List with pagination
+EmbedWorkflow::Users.list(starting_after: "550e8400-e29b-41d4-a716-446655440000", limit: 10)
+```
+
+### Delete a user
+
+```ruby
+EmbedWorkflow::Users.delete(key: "api-user-1")
+```
+
 ### Catch a webhook
 
 ```ruby
