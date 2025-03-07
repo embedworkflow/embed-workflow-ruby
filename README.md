@@ -167,3 +167,56 @@ EmbedWorkflow::Users.delete(key: "api-user-1")
 ```ruby
 EmbedWorkflow.catch_hook(user_key: "main", hook_id: "70e59f4d-1dc4-4720-b0bb-46929dc48d47", anything: "else", you: "need")
 ```
+
+### App Connections
+
+App Connections allow you to store encrypted credentials for third-party integrations.
+
+#### List app connections
+
+```ruby
+# Default pagination (25 items)
+EmbedWorkflow::AppConnections.list
+
+# With pagination parameters
+EmbedWorkflow::AppConnections.list(starting_after: "550e8400-e29b-41d4-a716-446655440000", limit: 50)
+
+# For a specific user
+EmbedWorkflow::AppConnections.list(user_key: "api-user-1")
+```
+
+#### Fetch an app connection
+
+```ruby
+EmbedWorkflow::AppConnections.fetch(id: "75233470-6316-4fa9-a7f5-5196f3d06067")
+```
+
+#### Create an app connection
+
+```ruby
+config = {
+  api_key: "sk-1234567890abcdef",
+  organization_id: "org-abcdefg123456"
+}
+
+EmbedWorkflow::AppConnections.create(
+  name: "My OpenAI Connection",
+  app_type: "openai",
+  config: config
+)
+```
+
+#### Update an app connection
+
+```ruby
+EmbedWorkflow::AppConnections.update(
+  id: "75233470-6316-4fa9-a7f5-5196f3d06067",
+  name: "Updated OpenAI Connection"
+)
+```
+
+#### Delete an app connection
+
+```ruby
+EmbedWorkflow::AppConnections.delete(id: "75233470-6316-4fa9-a7f5-5196f3d06067")
+```
