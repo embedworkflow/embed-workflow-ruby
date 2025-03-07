@@ -68,7 +68,7 @@ describe "users" do
       before do
         allow_any_instance_of(EmbedWorkflow::Client)
           .to receive(:put_request)
-          .with({ 
+          .with({
             path: "/api/v1/users/api-user-1",
             body: { key: "api-user-1" }
           })
@@ -85,9 +85,9 @@ describe "users" do
         config = { user_data: { foo: "bar" } }
         allow_any_instance_of(EmbedWorkflow::Client)
           .to receive(:put_request)
-          .with({ 
+          .with({
             path: "/api/v1/users/api-user-1",
-            body: { 
+            body: {
               key: "api-user-1",
               name: "Jane Doe",
               email: "jane@example.com",

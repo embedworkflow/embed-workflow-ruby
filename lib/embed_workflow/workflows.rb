@@ -45,10 +45,17 @@ module EmbedWorkflow
         )
       end
 
-      def list(user_key: nil, starting_after: nil, ending_before: nil)
+      def list(user_key: nil, starting_after: nil, ending_before: nil, limit: nil)
+        params = {
+          user_key: user_key,
+          starting_after: starting_after,
+          ending_before: ending_before,
+          limit: limit
+        }.compact
+
         get_request(
           path: RESOURCE_BASE_PATH,
-          params: { user_key: user_key, starting_after: starting_after, ending_before: ending_before }.compact
+          params: params
         )
       end
 
