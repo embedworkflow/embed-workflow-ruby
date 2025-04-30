@@ -127,17 +127,13 @@ EmbedWorkflow::Actions.activities(hashid: "7l0al")
 ### Upsert a user
 
 ```ruby
-config = {
-  user_data: {
-    foo: "bar"
-  },
-}
+data = { foo: "bar" }
 
 # Adding a new user
-user = EmbedWorkflow::Users.upsert(key: "api-user-1", name: "Jane Doe", email: "jane@embedworkflow.com", config: config)
+user = EmbedWorkflow::Users.upsert(key: "api-user-1", name: "Jane Doe", email: "jane@embedworkflow.com", data: data)
 
 # Updating a user
-EmbedWorkflow::Users.upsert(name: "Jane Smith", id: user["id"], config: config)
+EmbedWorkflow::Users.upsert(name: "Jane Smith", id: user["id"], data: data)
 ```
 
 ### Fetch a user
