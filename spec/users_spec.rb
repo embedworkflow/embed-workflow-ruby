@@ -82,7 +82,7 @@ describe "users" do
 
     context "with all parameters" do
       before do
-        config = { user_data: { foo: "bar" } }
+        data = { foo: "bar" }
         allow_any_instance_of(EmbedWorkflow::Client)
           .to receive(:put_request)
           .with({
@@ -91,19 +91,19 @@ describe "users" do
               key: "api-user-1",
               name: "Jane Doe",
               email: "jane@example.com",
-              config: config
+              data: data
             }
           })
           .and_return("response")
       end
 
       it "sends the correct parameters to the users API" do
-        config = { user_data: { foo: "bar" } }
+        data = { foo: "bar" }
         EmbedWorkflow::Users.upsert(
           key: "api-user-1",
           name: "Jane Doe",
           email: "jane@example.com",
-          config: config
+          data: data
         )
       end
     end
