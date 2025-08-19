@@ -7,11 +7,9 @@ module EmbedWorkflow
     BASE_API_URL  = "https://embedworkflow.com/".freeze
 
     def client
-      return @client if defined?(@client)
-      @client         = create_connection(URI.parse(BASE_API_URL))
-      @client.use_ssl = true
-
-      @client
+      create_connection(URI.parse(BASE_API_URL)).tap do |client|
+        client.use_ssl = true
+      end
     end
 
     def get_request(path:, auth: true, params: {})
