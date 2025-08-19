@@ -11,14 +11,15 @@ module EmbedWorkflow
 
       RESOURCE_BASE_PATH = "#{BASE_API_PATH}/users".freeze
 
-      def upsert(key:, name: nil, email: nil, data: nil, groups: nil)
-        attrs = {
+      def upsert(key:, name: UNSET, email: UNSET, data: UNSET, groups: UNSET, time_zone: UNSET)
+        attrs = prepare_params({
           key: key,
           name: name,
           email: email,
           data: data,
-          groups: groups
-        }.compact
+          groups: groups,
+          time_zone: time_zone
+        })
 
         put_request(
           path: "#{RESOURCE_BASE_PATH}/#{key}",

@@ -91,6 +91,8 @@ describe "users" do
               key: "api-user-1",
               name: "Jane Doe",
               email: "jane@example.com",
+              time_zone: "America/New_York",
+              groups: ["admin", "users"],
               data: data
             }
           })
@@ -103,7 +105,59 @@ describe "users" do
           key: "api-user-1",
           name: "Jane Doe",
           email: "jane@example.com",
+          time_zone: "America/New_York",
+          groups: ["admin", "users"],
           data: data
+        )
+      end
+    end
+
+    context "with nil values to unset fields" do
+      before do
+        allow_any_instance_of(EmbedWorkflow::Client)
+          .to receive(:put_request)
+          .with({
+            path: "/api/v1/users/api-user-1",
+            body: {
+              key: "api-user-1",
+              time_zone: nil,
+              groups: nil
+            }
+          })
+          .and_return("response")
+      end
+
+      it "sends nil values to unset time_zone and groups" do
+        EmbedWorkflow::Users.upsert(
+          key: "api-user-1",
+          time_zone: nil,
+          groups: nil
+        )
+      end
+    end
+
+    context "with mixed nil and provided values" do
+      before do
+        allow_any_instance_of(EmbedWorkflow::Client)
+          .to receive(:put_request)
+          .with({
+            path: "/api/v1/users/api-user-1",
+            body: {
+              key: "api-user-1",
+              name: "Jane Doe",
+              email: "jane@example.com",
+              groups: nil
+            }
+          })
+          .and_return("response")
+      end
+
+      it "sends both set and unset values correctly" do
+        EmbedWorkflow::Users.upsert(
+          key: "api-user-1",
+          name: "Jane Doe",
+          email: "jane@example.com",
+          groups: nil
         )
       end
     end
