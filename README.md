@@ -1,6 +1,6 @@
 # EmbedWorkflow Ruby SDK
 
-Ruby client library for the [EmbedWorkflow API](https://github.com/embedworkflow/embed-workflow-ruby).
+Ruby client library for the [EmbedWorkflow API](https://docs.embedworkflow.com/reference).
 
 ## Installation
 
